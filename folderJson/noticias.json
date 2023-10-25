@@ -1,16 +1,10 @@
 {
   "noticias": [
     {
-      "titulo": "casa casa.",
-      "contenido": "casa playa en de playa.",
-      "tema": "BBBB BB",
-      "fecha": "2023-10-25"
+      "contenido": "1 nala nala casa playa en de playa."
     },
     {
-      "titulo": "case de playa",
-      "contenido": "casa en la playa de casa.",
-      "tema": "ZZZZZZZ YYYY",
-      "fecha": "2023-10-24"
+      "contenido": "2 nala casa en la playa de casa."
     }
   ]
 }

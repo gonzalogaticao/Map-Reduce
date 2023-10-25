@@ -1,34 +1,52 @@
-#No jala
-
-import json
 from mrjob.job import MRJob
 import re
-import os
+import json
 
 WORD_RE = re.compile(r"[\w']+")
+
 
 class MRWordFreqCount(MRJob):
 
     def mapper(self, _, line):
-        # Obtiene la ruta absoluta del script y construye la ruta del archivo JSON
-        script_path = os.path.abspath(__file__)
-        json_path = os.path.join(os.path.dirname(script_path), 'noticias.json')
+        # Parsea la línea como JSON
+        data = json.loads(line)
+        for obj in data:
+            # Extrae el campo "contenido"
+            contenido = obj.get('contenido')
+            if contenido:
+                words = WORD_RE.findall(contenido)
+                for word in words:
+                    yield (word.lower(), (contenido, 1))
 
-        # Carga el contenido de la noticia desde el archivo JSON
-        with open(json_path, 'r') as archivo:
-            datos = json.load(archivo)
-            
-        for noticia in datos['noticias']:
-            contenido = noticia['contenido']
-            words = WORD_RE.findall(contenido)
-            for word in words:
-                yield (word.lower(), 1)
+    def combiner(self, word, line_counts):
+        line_count_dict = {}
+        for line, count in line_counts:
+            if line not in line_count_dict:
+                line_count_dict[line] = count
+            else:
+                line_count_dict[line] += count
+        yield (word, list(line_count_dict.items()))
 
-    def combiner(self, word, counts):
-        yield (word, sum(counts))
+    def reducer(self, word, line_counts_list):
+        final_line_count_dict = {}
+        for line_counts in line_counts_list:
+            for line, count in line_counts:
+                if line not in final_line_count_dict:
+                    final_line_count_dict[line] = count
+                else:
+                    final_line_count_dict[line] += count
 
-    def reducer(self, word, counts):
-        yield (word, sum(counts))
+        output_list = [(self.parse_output(line), count)
+                       for line, count in final_line_count_dict.items()]
+        yield (word, output_list)
+
+    def parse_output(self, line):
+        parts = line.split(" ", 1)
+        if len(parts) == 2 and parts[0].isdigit():
+            return int(parts[0])
+        else:
+            return None
+
 
 if __name__ == '__main__':
     MRWordFreqCount.run()

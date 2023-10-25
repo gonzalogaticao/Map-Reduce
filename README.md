@@ -7,7 +7,7 @@ pip install mrjob
 ```
 
 ### Cumple con el map-reduce pero:
- Hasta ahora lee desde un txt.
- Primero debe leer el numero de la linea a la que corresponde, por ejemplo:
-  - 1 esta es la primera linea
-  - 2 esta es la segunda linea
+1. Hasta ahora lee desde un txt.
+2. Primero debe leer el numero de la linea a la que corresponde, por ejemplo:
+    * esta es la primera linea
+    * esta es la segunda linea

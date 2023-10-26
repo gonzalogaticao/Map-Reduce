@@ -1,5 +1,6 @@
 # Al ejecutar: python Mapp.py | python Reduce2.py  
 # Imprime en un txt el resultado del map-reduce: palabra{linea,cantidad}
+# Tiene problemas con un input sucio, se cae en windows, muestra caracteres extranos en linux.
 
 import sys
 from collections import defaultdict

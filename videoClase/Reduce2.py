@@ -1,6 +1,8 @@
+# Al ejecutar: python Mapp.py | python Reduce2.py  
+# Imprime en un txt el resultado del map-reduce: palabra{linea,cantidad}
+
 import sys
 from collections import defaultdict
-
 
 def main():
     indice_invertido = defaultdict(lambda: defaultdict(int))
@@ -15,7 +17,7 @@ def main():
 
         indice_invertido[palabra][numero_linea] += 1
 
-    with open('reduced.txt', 'w') as f:
+    with open('Biobio/biobio_reduced.txt', 'w') as f:
         for palabra in sorted(indice_invertido.keys()):
             lineas = indice_invertido[palabra]
             listado = "".join(

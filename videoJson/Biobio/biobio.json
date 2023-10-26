@@ -1,0 +1,18 @@
+{
+  "noticias": [
+    {
+      "numero": "1",
+      "titulo": " nala nala nala casa casa.",
+      "contenido": "nala nala casa playa en de playa",
+      "tema": "nala kkkk",
+      "fecha": "2023-10-25"
+    },
+    {
+      "numero": "2",
+      "titulo": "nala case de playa",
+      "contenido": "XYZ nala casa en la playa de casa",
+      "tema": "nala YYYY",
+      "fecha": "2023-10-25"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+nala 1
+nala 1
+casa 1
+playa 1
+en 1
+de 1
+playa 1
+xyz 2
+nala 2
+casa 2
+en 2
+la 2
+playa 2
+de 2
+casa 2

@@ -1,5 +1,5 @@
 # Map-Reducer con MrJob
-Realiza un conteo de frecuencia de palabras en lineas de texto.
+(folderTXT) Realiza un conteo de frecuencia de palabras en lineas de texto.
 
 ## Instalación
 

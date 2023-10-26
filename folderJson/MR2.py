@@ -1,17 +1,24 @@
-from mrjob.job import MRJob
-import re
+# RIP no funco
+
 import json
+import re
+from mrjob.job import MRJob
+from mrjob.step import MRStep
 
 WORD_RE = re.compile(r"[\w']+")
 
-
 class MRWordFreqCount(MRJob):
 
+    def configure_args(self):
+        super(MRWordFreqCount, self).configure_args()
+        self.add_file_arg('--noticias')
+
+    def mapper_init(self):
+        with open(self.options.noticias, "r") as tgt_json:
+            self.data = json.load(tgt_json)
+
     def mapper(self, _, line):
-        # Parsea la línea como JSON
-        data = json.loads(line)
-        for obj in data:
-            # Extrae el campo "contenido"
+        for obj in self.data:
             contenido = obj.get('contenido')
             if contenido:
                 words = WORD_RE.findall(contenido)
